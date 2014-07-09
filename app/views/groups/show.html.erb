@@ -1,0 +1,12 @@
+<h2> GROUP:  <em><%= @group.name %></em></h2>
+<br>
+<h3> Located @ <em><%= @group.location %></em> </h3>
+<br>
+<h3> LIST OF MEMBERS </h3>
+<br>
+
+<ul>
+<% @users.each do |user| %>
+  <li> <%= user.username %> (<%= user.first_name %> <%= user.last_name %> ) </li>
+<% end %>
+</ul>

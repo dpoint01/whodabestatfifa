@@ -6,14 +6,22 @@
     </p>
   </div>
   <div class="text-center">
-    <a href="#" class="btn btn-lg btn-primary">C R E A T E    G R O U P<span class="glyphicon glyphicon-flash"></span></a>
+   <span class="glyphicon glyphicon-flash"> <%= link_to "C R E A T E    G R O U P" , new_group_path, class:"btn btn-lg btn-primary"%></span>  <span class="glyphicon glyphicon-flash"></span>
+
+
+    <!-- <a href="#" class="btn btn-lg btn-primary">C R E A T E    G R O U P</span></a> -->
   </div>
 
 
   <h1 class="text-center">List of All Groups</h1>
   <ul>
     <% @groups.each do |group| %>
-      <li> <%= group.name %> ( <%= group.location %> ) </li>
+      <li><strong> <%= group.name %></strong> ( <%= group.location %> )
+      <% if !@joined %>
+        <%= button_to "JOIN" , memberships_path(group_id: group), class:"btn btn-xs btn-primary"%><span class="glyphicon glyphicon-arrow-right"></span> </li>
+      <% else %>
+        <a href="#" class="btn btn-xs btn-warning">ALREADY JOINED</a>
+      <% end %>
     <% end %>
   </ul>
 
