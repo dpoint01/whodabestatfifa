@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
   </head>
   <body>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -70,8 +71,30 @@
 </nav>
 
 <!-- For flash messages -->
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<div class="container">
+  <% if notice %>
+    <div class="col-sm-6 col-md-6">
+      <div class="alert alert-success", class="center-block">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+        ×</button>
+        <!-- <span class="glyphicon glyphicon-ok"></span> <strong>Success Message</strong>
+        <hr class="message-inner-separator"> -->
+        <p class="notice",  class="text-center"><strong><%= notice %></strong></p>
+      </div>
+    </div>
+  <% end %>
+  <% if alert %>
+    <div class="col-sm-6 col-md-6">
+      <div class="alert alert-warning", class="center-block">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+        ×</button>
+        <!-- <span class="glyphicon glyphicon-record"></span> <strong>Warning Message</strong>
+        <hr class="message-inner-separator"> -->
+        <p class="alert", class="text-center"><strong><%= alert %></strong></p>
+      </div>
+    </div>
+  <% end %>
+</div>
 
 
 <%= yield %>

@@ -975,6 +975,11 @@ hr {
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
+.div-centered{
+    float: none;
+    margin: 0 auto;
+}
+
 .sr-only-focusable:active,
 .sr-only-focusable:focus {
   position: static;
