@@ -5,11 +5,9 @@
       have been waiting for. No more arguments, no more bragging, no more speculating on who's the best player amongst your friends... Simply join or create a group with your friends and we'll take care of finding who the best player is! Just play your favorite game, send your score and opponent's name by text and we'll compile all your information through a unique scoring system.<em> PS: FIFA banter is still highly encouraged... </em>
     </p>
   </div>
+
   <div class="text-center">
    <span class="glyphicon glyphicon-flash"> <%= link_to "C R E A T E    G R O U P" , new_group_path, class:"btn btn-lg btn-primary"%></span>  <span class="glyphicon glyphicon-flash"></span>
-
-
-    <!-- <a href="#" class="btn btn-lg btn-primary">C R E A T E    G R O U P</span></a> -->
   </div>
 
 
@@ -17,10 +15,12 @@
   <ul>
     <% @groups.each do |group| %>
       <li><strong> <%= group.name %></strong> ( <%= group.location %> )
-      <% if !@joined %>
-        <%= button_to "JOIN" , memberships_path(group_id: group), class:"btn btn-xs btn-primary"%><span class="glyphicon glyphicon-arrow-right"></span> </li>
-      <% else %>
-        <a href="#" class="btn btn-xs btn-warning">ALREADY JOINED</a>
+      <% group.memberships.each do |membership| %>
+        <% if membership.user_id != current_user.id %>
+          <%= button_to "JOIN" , memberships_path(group_id: group), class:"btn btn-xs btn-primary"%><span class="glyphicon glyphicon-arrow-right"></span> </li>
+        <% else %>
+          <a href="#" class="btn btn-xs btn-warning">ALREADY JOINED</a>
+        <% end %>
       <% end %>
     <% end %>
   </ul>
