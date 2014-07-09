@@ -23,7 +23,7 @@ feature "user signs in", %q{
 
     click_on 'Sign in'
 
-    expect(page).to have_content("You Signed In: Welcome Back! Are you the best at Fifa?")
+    expect(page).to have_content("Successfully signed in, are you da best at FIFA?")
   end
 
   scenario "user signs in with invalid credentials" do

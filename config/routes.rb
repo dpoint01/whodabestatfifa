@@ -1,6 +1,6 @@
 Fifa::Application.routes.draw do
 
-  root 'pages#index'
+  root 'groups#index'
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

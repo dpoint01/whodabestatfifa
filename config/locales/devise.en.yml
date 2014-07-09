@@ -41,8 +41,8 @@ en:
       update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and click on the confirm link to finalize confirming your new email address."
       updated: "You updated your account successfully."
     sessions:
-      signed_in: "You Signed In: Welcome Back! Are you the best at Fifa?"
-      signed_out: "You Signed Out: Guess you're giving up on being the best..."
+      signed_in: "Successfully signed in, are you da best at FIFA?"
+      signed_out: "Successfully signed out, guess you're giving up on being the best..."
     unlocks:
       send_instructions: "You will receive an email with instructions about how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions about how to unlock it in a few minutes."
