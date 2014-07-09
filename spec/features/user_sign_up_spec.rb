@@ -15,22 +15,25 @@ feature "user signs up", %q{
   scenario "user signs up with valid information" do
 
     visit new_user_registration_path
-    fill_in "Email", with: "test@test.com"
-    fill_in "First name", with: "David"
-    fill_in "Last name", with: "Boss"
-    fill_in "Username", with: "dpoint01"
-    fill_in "Password", with: "test1234"
-    fill_in "Password confirmation", with: "test1234"
-    fill_in "Phone number", with: "1234567890"
-    click_on "Sign up"
 
-    expect(page).to have_content "GOALLGOAALGOALLLL! You have signed up successfully."
+    fill_in 'Email', with: 'test@test.com'
+    fill_in 'Password', with: 'test1234'
+    fill_in 'Password confirmation', with: 'test1234'
+    fill_in 'Phone number', with: '1234567890'
+    fill_in 'Last name', with: 'Boss'
+    fill_in 'Username', with: 'dpoint01'
+    fill_in 'First name', with: 'David'
+
+    click_button 'Sign up'
+
+    expect(page).to have_content('GOALLGOAALGOALLLL! You have signed up successfully.')
+
   end
 
   scenario "user signs up without required information" do
     visit new_user_registration_path
 
-    click_on "Sign up"
+    click_button "Sign up"
 
     expect(page).to have_content "Email can't be blank"
     expect(page).to have_content "First name can't be blank"

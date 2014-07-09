@@ -12,6 +12,11 @@
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 
+<!-- If user signed in dispaly this: -->
+  <% if user_signed_in? %>
+    <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+  <% end %>
+
 <%= yield %>
 
 </body>
