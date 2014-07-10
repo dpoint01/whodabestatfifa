@@ -13,6 +13,13 @@ class GroupsController < ApplicationController
     @groups_joined = Group.find_all_by_id(@user_groups_id)
     @groups_not_joined = Group.find_all_by_id(!@user_groups_id)
 
+    if params[:search]
+      @groups = Group.search(params[:search])
+      if @groups.empty?
+         flash.now[:notice] = "No results"
+      end
+    end
+
   end
 
   def show

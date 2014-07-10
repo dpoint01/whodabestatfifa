@@ -25,16 +25,24 @@
 <!-- NAVBARRRRRR -->
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
-
     <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
+    <div class="navbar-header", class="title">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to "Who Da Best at FIFA?", root_path, class: "navbar-brand" %>
+      <link href='http://fonts.googleapis.com/css?family=Chewy' rel='stylesheet' type='text/css'>
+      <style>
+        body {
+          font-family: 'Chewy', serif;
+          font-size: 18px
+        }
+      </style>
+      <body>
+          <%= link_to "Who Da Best at FIFA?", root_path, class: "navbar-brand", style:"color:#3A92C2"%>
+      </body>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -50,6 +58,7 @@
       </ul>
 
       <!-- SEARCH FOR GROUPS -->
+
       <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search for groups">
