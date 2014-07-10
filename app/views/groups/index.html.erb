@@ -13,15 +13,14 @@
 
   <h1 class="text-center">List of All Groups</h1>
   <ul>
-    <% @groups.each do |group| %>
+    <% @groups_joined.each do |group| %>
       <li><strong> <%= group.name %></strong> ( <%= group.location %> )
-      <% group.memberships.each do |membership| %>
-        <% if membership.user_id != current_user.id %>
-          <%= button_to "JOIN" , memberships_path(group_id: group), class:"btn btn-xs btn-primary"%><span class="glyphicon glyphicon-arrow-right"></span> </li>
-        <% else %>
-          <a href="#" class="btn btn-xs btn-warning">ALREADY JOINED</a>
-        <% end %>
-      <% end %>
+          <a href="#" class="btn btn-xs btn-warning">VIEW YOUR GROUP</a>
+    <% end %>
+
+    <% @groups_not_joined.each do |group| %>
+      <li><strong> <%= group.name %></strong> ( <%= group.location %> )
+      <%= button_to "JOIN" , memberships_path(group_id: group), class:"btn btn-xs btn-primary"%><span class="glyphicon glyphicon-arrow-right"></span> </li>
     <% end %>
   </ul>
 
