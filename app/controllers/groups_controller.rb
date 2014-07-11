@@ -1,22 +1,31 @@
 class GroupsController < ApplicationController
   def index
     @current_user_memberships = Membership.where("user_id = #{current_user.id}")
-
-    @groups = Group.all.order("name ASC")
-
+    @search = false
     @user_groups_id = Array.new
 
     @current_user_memberships.each do |membership|
       @user_groups_id << membership.group_id
     end
 
-    @groups_joined = Group.find_all_by_id(@user_groups_id)
-    @groups_not_joined = Group.find_all_by_id(!@user_groups_id)
+    if @user_groups_id != []
+      @groups_joined = Group.find_all_by_id(@user_groups_id)
+    end
+
+    @groups_not_joined = Group.where.not(id: @user_groups_id)
+
+    if @user_groups_id != []
+      @groups = @groups_joined.concat(@groups_not_joined)
+    else
+      @groups = @groups_not_joined
+    end
 
     if params[:search]
+      @search = true
       @groups = Group.search(params[:search])
+      flash.now[:notice] = "Found some stuff!"
       if @groups.empty?
-         flash.now[:notice] = "No results"
+         flash.now[:alert] = "No results for '#{params[:search]}' "
       end
     end
 

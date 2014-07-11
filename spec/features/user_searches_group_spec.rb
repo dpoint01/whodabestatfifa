@@ -11,9 +11,9 @@ feature 'search for chair' do
     sign_in_as(user)
     visit groups_path
 
-    fill_in "search", with: "group1"
+    fill_in "search", with: "generic name 1"
     click_button 'Submit'
-    expect(page).to have_content('group1')
+    expect(page).to have_content('generic name 1')
 
    end
 

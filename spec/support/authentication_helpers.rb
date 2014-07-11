@@ -4,7 +4,9 @@ module Helpers
       visit new_user_session_path
       fill_in "Phone number", with: user.phone_number
       fill_in "Password", with: user.password
-      click_on "Sign in"
+      within("#sign_in") do
+        click_on "Sign in"
+      end
     end
   end
 end

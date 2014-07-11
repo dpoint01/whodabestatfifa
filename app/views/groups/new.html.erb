@@ -1,42 +1,44 @@
-<h2> CREATE A NEW GROUP </h2>
+<div class="container", style="padding-top: 70px" >
+  <h2> CREATE A NEW GROUP </h2>
 
-<ul>
-  <% if @group.errors.any? %>
-     <% @group.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-     <% end %>
+  <ul>
+    <% if @group.errors.any? %>
+       <% @group.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+       <% end %>
+    <% end %>
+  </ul>
+
+  <%= form_for @group do |f| %>
+  <div class="container">
+
+    <div class="row">
+      <div class="offset4 span4">
+        <%= f.label :name %>
+        <%= f.text_field :name ,placeholder: "e.g. FIFA Gods" %><br><br>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-4 columns">
+        <%= f.label :location %>
+        <%= f.text_field :location,placeholder: "e.g. Tufts University" %><br><br>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-4 columns">
+        <%= f.label :description %>
+        <%= f.text_area :description,placeholder:"Describe the nature of this group..." %>
+        <br><br>
+      </div>
+    </div>
+
+   <div class="row">
+      <div class="large-4 columns">
+        <%= f.submit 'Start the Banter', class:'btn btn-success' %>
+      </div>
+    </div>
+
   <% end %>
-</ul>
-
-<%= form_for @group do |f| %>
-<div class="container">
-
-  <div class="row">
-    <div class="offset4 span4">
-      <%= f.label :name %>
-      <%= f.text_field :name ,placeholder: "e.g. FIFA Gods" %><br><br>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="large-4 columns">
-      <%= f.label :location %>
-      <%= f.text_field :location,placeholder: "e.g. Tufts University" %><br><br>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="large-4 columns">
-      <%= f.label :description %>
-      <%= f.text_area :description,placeholder:"Describe the nature of this group..." %>
-      <br><br>
-    </div>
-  </div>
-
- <div class="row">
-    <div class="large-4 columns">
-      <%= f.submit 'Start the Banter', class:'btn btn-success' %>
-    </div>
-  </div>
-
-<% end %>
+</div>

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container", style="padding-top:70px">
   <div class="jumbotron">
     <p class="lead", class="text-center", style="font-family:sans-serif">
       <strong style="font-family:Chewy;color:#3A92C2"> Who Da Best at FIFA?</strong> is the website that all FIFA lovers
@@ -6,22 +6,45 @@
     </p>
   </div>
 
-  <div class="text-center">
-   <span class="glyphicon glyphicon-flash"> <%= link_to "C R E A T E    G R O U P" , new_group_path, class:"btn btn-lg btn-primary"%></span>  <span class="glyphicon glyphicon-flash"></span>
+  <div class="text-center", style="font-family: sans-serif">
+    <i class="fa fa-circle-thin"></i>
+    <i class="fa fa-circle-o"></i>
+    <i class="fa fa-circle fa-lg"></i>
+    <%= link_to "C R E A T E    G R O U P" , new_group_path, class:"btn btn-lg btn-primary"%>
+    <i class="fa fa-circle fa-lg"></i>
+    <i class="fa fa-circle-o"></i>
+    <i class="fa fa-circle-thin"></i>
   </div>
 
-
+<% if @search == false %>
   <h1 class="text-center">List of All Groups</h1>
-  <ul>
-    <% @groups_joined.each do |group| %>
-      <li><strong> <%= group.name %></strong> ( <%= group.location %> )
-          <a href="#" class="btn btn-xs btn-warning">VIEW YOUR GROUP</a>
-    <% end %>
+  <ul class="fa-ul">
 
-    <% @groups_not_joined.each do |group| %>
-      <li><strong> <%= group.name %></strong> ( <%= group.location %> )
-      <%= button_to "JOIN" , memberships_path(group_id: group), class:"btn btn-xs btn-primary"%><span class="glyphicon glyphicon-arrow-right"></span> </li>
-    <% end %>
+      <% if !@groups_joined.nil? %>
+        <% @groups_joined.each do |group| %>
+          <li><i class="fa-li fa fa-spinner fa-spin"></i><strong> <%= group.name %></strong> ( <%= group.location %> )
+          <%= link_to "VIEW YOUR GROUP", group_path(group.id), class:"btn btn-xs btn-warning" %> </li>
+        <% end %>
+      <% end %>
+
+      <% if !@groups_not_joined.nil? %>
+        <% @groups_not_joined.each do |group| %>
+          <li><i class="fa-li fa fa-spinner fa-spin"></i><strong> <%= group.name %></strong> ( <%= group.location %> <%= button_to "JOIN" , memberships_path(group_id: group), class:"btn btn-xs btn-primary" %> </li>
+        <% end %>
+      <% end %>
   </ul>
+<% end %>
+
+<% if @search == true %>
+  <h1 class="text-center">List of Results</h1>
+  <ul class="fa-ul">
+
+      <% @groups.each do |group| %>
+        <li><i class="fa-li fa fa-spinner fa-spin"></i><strong> <%= group.name %></strong> ( <%= group.location %> ) </li>
+      <% end %>
+      <br>
+       <i class="fa fa-hand-o-left fa-lg fa-fw"></i> <%= link_to "Back", root_path, style:"font-size:1.5em"%>
+<% end %>
+
 
 </div>

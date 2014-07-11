@@ -10,6 +10,11 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'devise'
 
+#for icons
+gem 'font-awesome-sass'
+#for forms
+gem 'bootstrap_form'
+
 group :doc do
   gem 'sdoc', require: false
 end

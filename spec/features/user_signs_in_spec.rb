@@ -21,7 +21,10 @@ feature "user signs in", %q{
     fill_in 'Phone number', with: user.phone_number
     fill_in 'Password', with: user.password
 
-    click_on 'Sign in'
+     within("#sign_in") do
+        click_on "Sign in"
+      end
+
 
     expect(page).to have_content("Successfully signed in, are you da best at FIFA?")
   end
@@ -29,7 +32,9 @@ feature "user signs in", %q{
   scenario "user signs in with invalid credentials" do
     visit new_user_session_path
 
-    click_on "Sign in"
+     within("#sign_in") do
+        click_on "Sign in"
+      end
 
     expect(page).to have_content("Invalid phone number or password.")
   end
