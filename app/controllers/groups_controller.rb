@@ -2,6 +2,7 @@ class GroupsController < ApplicationController
   def index
     @current_user_memberships = Membership.where("user_id = #{current_user.id}")
     @search = false
+    @member = false
     @user_groups_id = Array.new
 
     @current_user_memberships.each do |membership|
@@ -23,8 +24,10 @@ class GroupsController < ApplicationController
     if params[:search]
       @search = true
       @groups = Group.search(params[:search])
-      flash.now[:notice] = "Found some stuff!"
-      if @groups.empty?
+
+      if !@groups.empty?
+        flash.now[:notice] = "Found some stuff!"
+      elsif @groups.empty?
          flash.now[:alert] = "No results for '#{params[:search]}' "
       end
     end
