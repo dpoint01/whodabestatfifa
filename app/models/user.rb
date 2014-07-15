@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :memberships
   has_many :groups, through: :membership
+  has_many :games
 
   validates_presence_of :username
   validates_presence_of :first_name

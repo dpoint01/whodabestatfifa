@@ -9,6 +9,14 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :phone_number, null: false
       t.string :username, null: false
 
+      t.integer :wins
+      t.integer :losses
+      t.integer :points, default: "500"
+      t.integer :goals_scored
+      t.integer :games_played
+      t.integer :rank
+
+
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
