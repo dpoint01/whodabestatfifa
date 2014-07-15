@@ -17,4 +17,5 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
   validates_uniqueness_of :phone_number
   validates :phone_number, :length => { :is => 10 }
+
 end

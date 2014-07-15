@@ -1,4 +1,4 @@
-<div class="container", style="padding-top:50px">
+<div class="container", style="padding-top:30px">
   <div class="jumbotron">
     <h2 class="text-center"><em><%= @group.name %></em></h2>
     <h3 class="text-center"> Located @ <em><%= @group.location %></em> </h3>
@@ -13,7 +13,8 @@
 
 <div class="container">
   <div class="jumbotron">
-    <h3 class="text-center">Da Best at FIFA is <%= @users.first.username %> </h2>
+    <h3 class="text-center" , style="color:#3A92C2" >Da Best at FIFA is </h3>
+    <strong><h2 class="text-center tlt", style="color:#FBB829"><%= @users.first.username %></h2></strong>
   </div>
 </div>
 
@@ -43,5 +44,15 @@
       </td>
     </tr>
   </table>
- <i class="fa fa-hand-o-left fa-lg fa-fw"></i> <%= link_to "Back", root_path, style:"font-size:1.5em"%>
+  <div class="text-center", style="padding-bottom: 30px">
+    <i class="fa fa-hand-o-left fa-lg fa-fw"></i> <%= link_to "Back", root_path, style:"font-size:1.5em"%>
+  </div>
 </div>
+
+<script>
+  $( document ).ready(function() {
+    $(".animate").textillate();
+  })
+</script>
+
+

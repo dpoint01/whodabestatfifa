@@ -12,6 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
-//= require bootstrap.min
+//= require jquery.lettering
+//= require jquery.fittext
+//= require jquery.textillate
+//= require textillate_example
+//= require bootstrap
+
+
+
+

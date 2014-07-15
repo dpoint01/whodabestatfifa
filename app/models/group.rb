@@ -13,4 +13,16 @@ class Group < ActiveRecord::Base
     end
   end
 
+  def member?(user)
+    bool = false
+
+    self.memberships.each do |membership|
+      if user.id == membership.user_id
+        bool = true
+      end
+    end
+
+    return bool
+  end
+
 end
