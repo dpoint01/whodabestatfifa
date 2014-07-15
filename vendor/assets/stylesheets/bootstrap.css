@@ -5765,6 +5765,11 @@ button.close {
 .carousel-inner > .prev.right {
   left: 0;
 }
+
+/************************ Custom Styling ***********************/
+.score-input {
+  width: 40px !important;
+}
 .carousel-inner > .active.left {
   left: -100%;
 }

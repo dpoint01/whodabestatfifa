@@ -11,17 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140715151858) do
+ActiveRecord::Schema.define(version: 20140715190707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "games", force: true do |t|
-    t.integer  "winner_id",                    null: false
-    t.integer  "loser_id",                     null: false
-    t.integer  "winner_score",                 null: false
-    t.integer  "loser_score",                  null: false
-    t.boolean  "draw?",        default: false
+    t.integer  "creator_id",                     null: false
+    t.integer  "opponent_id",                    null: false
+    t.integer  "winner_id"
+    t.integer  "loser_id"
+    t.integer  "creator_score",                  null: false
+    t.integer  "opponent_score",                 null: false
+    t.boolean  "draw?",          default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -55,7 +57,6 @@ ActiveRecord::Schema.define(version: 20140715151858) do
     t.integer  "points",                 default: 500
     t.integer  "goals_scored"
     t.integer  "games_played"
-    t.integer  "rank"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

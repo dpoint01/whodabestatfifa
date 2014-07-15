@@ -38,6 +38,10 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @users = @group.users
+    @opponents = @users.reject{|i| i.id == current_user.id}
+    @game = Game.new
+
+    @games = Game.all
   end
 
   def new

@@ -4,7 +4,7 @@ Fifa::Application.routes.draw do
 
   resources :groups, only: [:index, :show, :create, :new]
   resources :memberships, only: [:create]
-
+  resources :games
   devise_for :users
 
 end

@@ -14,8 +14,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.integer :points, default: "500"
       t.integer :goals_scored
       t.integer :games_played
-      t.integer :rank
-
 
       ## Recoverable
       t.string   :reset_password_token
