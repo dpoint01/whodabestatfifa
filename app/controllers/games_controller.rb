@@ -9,13 +9,14 @@ class GamesController < ApplicationController
     @group = Group.find(params[:group_id])
     @game = Game.new(game_params)
 
+
     @game.group = @group
     @game.creator_id = current_user.id
 
     if @game.save
       redirect_to @group, notice: 'Game was successfully saved'
     else
-      render :new, notice: "Your game couldnt be saved."
+      redirect_to @group , alert: "Your game couldnt be saved."
     end
 
   end

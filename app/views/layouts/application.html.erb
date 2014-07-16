@@ -27,7 +27,7 @@
         }
       </style>
       <body>
-          <%= link_to "Who Da Best at FIFA?", root_path, class: "navbar-brand", style:"color:#3A92C2"%>
+          <strong><%= link_to "Who Da Best at FIFA?", root_path, class: "navbar-brand fa fa-home", style:"color:#3A92C2;"%></strong>
       </body>
     </div>
 
@@ -37,6 +37,7 @@
         <% if user_signed_in? %>
           <li class="inactive"><a href="#">Welcome back, <%= current_user.first_name %></a></li>
           <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+          <li style="padding-top:13px">(Beta Version) </li>
         <% else %>
           <li><%= link_to 'Register', new_user_registration_path %></li>
           <li><%= link_to 'Sign in', new_user_session_path %></li>

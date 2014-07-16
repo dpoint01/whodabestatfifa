@@ -24,29 +24,28 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :phone_number
   validates :phone_number, :length => { :is => 10 }
 
-  def numb_draws(games)
-    count = 0
+  # def numb_draws(games)
+  #   count = 0
 
-    games.each do |game|
-      if self.id == game.creator_id
-        if game.creator_score == game.opponent_score
-          count = count + 1
-        end
-      elsif self.id == game.opponent_id
-        if game.creator_score == game.opponent_score
-          count = count + 1
-        end
-      end
-    end
+  #   games.each do |game|
+  #     if self.id == game.creator_id
+  #       if game.creator_score == game.opponent_score
+  #         count = count + 1
+  #       end
+  #     elsif self.id == game.opponent_id
+  #       if game.creator_score == game.opponent_score
+  #         count = count + 1
+  #       end
+  #     end
+  #   end
 
-    return count
+  #   return count
 
-  end
+  # end
 
   def games_played
     games = games_created + games_challenged
-    games_played = games.count
-    return games_played
+    return games.count
   end
 
   def goals_scored(games)
@@ -79,7 +78,7 @@ class User < ActiveRecord::Base
       end
     end
 
-    numb_losses = count - self.numb_draws(games)
+    numb_losses = count
 
     return numb_losses
 
@@ -101,22 +100,35 @@ class User < ActiveRecord::Base
       end
     end
 
-    numb_wins = count - self.numb_draws(games)
+    numb_wins = count
+
 
     return numb_wins
 
   end
 
   def goals_per_game(games)
-    goals_per_game = 0.0
+    goals_per_game = 0
 
     if games_played != 0
-      goals_per_game = (goals_scored(games) / games_played)
+      goals_per_game = (goals_scored(games) / games_played.to_f).round(2)
       return goals_per_game
     elsif games_played == 0
       return goals_per_game
     end
 
+  end
+
+  def ratio(games)
+    ratio = 0.0
+
+    if wins(games) == 0 && losses(games) == 0
+     return ratio
+    else
+     calc =  (wins(games).to_f / losses(games).to_f).round(2)
+     return calc
+
+    end
   end
 
 end

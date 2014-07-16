@@ -2,25 +2,6 @@ class GroupsController < ApplicationController
   def index
     @search = false
     @groups = Group.all
-    # @current_user_memberships = Membership.where("user_id = #{current_user.id}")
-    # @search = false
-    # @user_groups_id = Array.new
-
-    # @current_user_memberships.each do |membership|
-    #   @user_groups_id << membership.group_id
-    # end
-
-    # if @user_groups_id != []
-    #   @groups_joined = Group.find_all_by_id(@user_groups_id)
-    # end
-
-    # @groups_not_joined = Group.where.not(id: @user_groups_id)
-
-    # if @user_groups_id != []
-    #   @groups = @groups_joined.concat(@groups_not_joined)
-    # else
-    #   @groups = @groups_not_joined
-    # end
 
     if params[:search]
       @search = true
@@ -37,7 +18,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @users = @group.users
+    @users = @group.users.order(:position)
     @opponents = @users.reject{|i| i.id == current_user.id}
     @game = Game.new
     @games = Game.all.order("created_at DESC")
@@ -64,4 +45,5 @@ class GroupsController < ApplicationController
   def group_params
     params.require(:group).permit(:name, :description, :location)
   end
+
 end

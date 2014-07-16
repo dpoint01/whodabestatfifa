@@ -13,7 +13,7 @@
         <div id="details", class="container collapse">
           <div class="row">
 
-           <div class="col-md-3 col-md-offset-2">YOU</div>
+           <div class="col-md-3 col-md-offset-2", style="padding-left:160px">YOU</div>
             <div class="text-center">
              <div class='col-md-1 text-center'>vs.</div>
               <div class="col-md-3">
@@ -66,7 +66,7 @@
 </div>
 
 <div class="container", class="text-center" >
-  <table class="table table-striped">
+  <table class="table table-hover">
     <tr>
       <td>
         <h3>RANK</h3>
@@ -75,7 +75,7 @@
         <h3>PLAYER</h3>
       </td>
       <td>
-        <h3>POINTS</h3>
+        <h3 style="color:#001185">RATIO</h3>
       </td>
       <td>
         <h3 style="color:green">WINS</h3>
@@ -96,9 +96,9 @@
     <% rank = 1 %>
     <% @users.each do |user| %>
       <tr>
-        <td><%= rank %> </td>
+        <td>#<%= rank %> </td>
         <td><%= user.username %> </td>
-        <td><%= user.points %> </td>
+        <td style="color:#001185"><%= user.ratio(@games) %> </td>
           <% if user.wins(@games) == 0 %>
            <td> 0 </td>
           <% else %>
@@ -131,11 +131,25 @@
   </table>
 </div>
 
+<div class="text-center">
+  <div class="btn-group text-center" data-toggle="buttons-checkbox">
+      <a class="btn collapse-data-btn" data-toggle="collapse" href="#ranking">About the Ranking</a>
+  </div>
+</div>
+
+<div id="ranking", class="container collapse", style="padding-top:7px">
+  <div class="text-center">
+    <p> The leaderboard is ranked according to the <span style="color:#001185"> ratio </span> of each player. A player's <span style="color:#001185"> ratio </span> is a good indicator of the player's level. <span style="color:#001185"> ratio </span> = <span style="color:green"> wins </span> / <span style="color:red"> losses </span>. If your <span style="color:#001185"> ratio </span> is higher than 1, you're in the right direction! If you're <span style="color:#001185"> ratio </span> is smaller than 1, you probably rarely taste the bitter/sweet taste of victory...</p>
+  </div>
+</div>
+
+
+
 <div class="container" style="padding-top: 10px" id="history">
   <div class="jumbotron">
     <h3> Group History </h3>
     <% @games.each do |game| %>
-      <p> <%= game.creator.username %> <span style="text-decoration:underline"> <%= game.creator_score%> - <%= game.opponent_score %> </span>  <%= game.opponent.username %> <span style="font-family:sans-serif;font-size:0.7em">( <%= game.created_at %>)</span> </p>
+      <p> <%= game.creator.username %> <span style="text-decoration:underline"> <%= game.creator_score%> - <%= game.opponent_score %> </span>  <%= game.opponent.username %> <span style="font-family:sans-serif;font-size:0.7em">( <%= game.created_at.in_time_zone("EST") %>)</span> </p>
     <% end %>
   </div>
 </div>
