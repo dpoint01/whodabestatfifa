@@ -9,27 +9,29 @@
 <div class="container", style="padding-top:30px">
   <div class="text-center">
   <div class="form-inline">
-    <%= form_for @game do |f| %>
+    <%= form_for [@group, @game] do |f| %>
         <div id="details", class="container collapse">
-          <div class="row text-center">
-           <div class="col-md-3 col-md-offset-2">YOU</div>
+          <div class="row">
 
-           <div class='col-md-1 text-center'> vs.</div>
-            <div class="col-md-3">
-              <%= f.label "opponent" %>
-              <%= f.collection_select(:opponent_id, @opponents, :id, :username) %>
-             <br><br>
+           <div class="col-md-3 col-md-offset-2">YOU</div>
+            <div class="text-center">
+             <div class='col-md-1 text-center'>vs.</div>
+              <div class="col-md-3">
+               <%= f.label "opponent", class:"sr-only" %>
+                <%= f.collection_select(:opponent_id, @opponents, :id, :username) %>
+               <br><br>
+              </div>
+             </div>
             </div>
-           </div>
 
           <div class="row form-group">
-              <span class="sr-only"><%= f.label "score current" %></span>
-              <%= f.text_field :winner_score,placeholder: "Your Score" %> - &nbsp&nbsp&nbsp<br><br>
+              <%= f.label "score current" , class:"sr-only" %>
+              <%= f.text_field :creator_score,placeholder: "Your Score" %> - &nbsp&nbsp&nbsp<br><br>
           </div>
 
           <div class="row form-group">
               <span class="sr-only"><%= f.label "score opponent" %></span>
-               &nbsp&nbsp&nbsp<%= f.text_field :loser_score,placeholder: "Opponent's score" %><br><br>
+               &nbsp&nbsp&nbsp<%= f.text_field :opponent_score,placeholder: "Opponent's score" %><br><br>
           </div>
 
          <div class="row text-center">
@@ -87,20 +89,59 @@
       <td>
         <h3>GAMES PLAYED</h3>
       </td>
+      <td>
+        <h3> AVG GOALS/GAME </h3>
+      </td>
     </tr>
+    <% rank = 1 %>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= rank %> </td>
+        <td><%= user.username %> </td>
+        <td><%= user.points %> </td>
+          <% if user.wins(@games) == 0 %>
+           <td> 0 </td>
+          <% else %>
+           <td><%= user.wins(@games) %> </td>
+          <% end %>
+          <% if user.losses(@games) == 0  %>
+           <td> 0 </td>
+          <% else %>
+           <td><%= user.losses(@games) %> </td>
+          <% end %>
+          <% if user.goals_scored(@games) == 0 %>
+           <td> 0 </td>
+          <% else %>
+           <td><%= user.goals_scored(@games)%> </td>
+          <% end %>
+          <% if user.games_played == []%>
+           <td> 0 </td>
+          <% else %>
+           <td><%= user.games_played %> </td>
+          <% end %>
+          <% if user.goals_per_game(@games) == 0 %>
+           <td> 0 </td>
+          <% else %>
+           <td><%= user.goals_per_game(@games)%> </td>
+          <% end %>
+
+      </tr>
+        <% rank = rank + 1 %>
+    <% end %>
   </table>
-  <div class="text-center">
-    <i class="fa fa-hand-o-left fa-lg fa-fw"></i> <%= link_to "Back", root_path, style:"font-size:1.5em"%>
-  </div>
 </div>
 
-<div class="container" style="padding-top: 10px">
+<div class="container" style="padding-top: 10px" id="history">
   <div class="jumbotron">
     <h3> Group History </h3>
     <% @games.each do |game| %>
-      <p> <%= game.winner.username %> <%= game.loser.username %> </p>
+      <p> <%= game.creator.username %> <span style="text-decoration:underline"> <%= game.creator_score%> - <%= game.opponent_score %> </span>  <%= game.opponent.username %> <span style="font-family:sans-serif;font-size:0.7em">( <%= game.created_at %>)</span> </p>
     <% end %>
   </div>
+</div>
+
+<div class="text-center">
+    <i class="fa fa-hand-o-left fa-lg fa-fw"></i> <%= link_to "Back", root_path, style:"font-size:1.5em"%>
 </div>
 
 

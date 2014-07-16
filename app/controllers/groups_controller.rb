@@ -40,8 +40,7 @@ class GroupsController < ApplicationController
     @users = @group.users
     @opponents = @users.reject{|i| i.id == current_user.id}
     @game = Game.new
-
-    @games = Game.all
+    @games = Game.all.order("created_at DESC")
   end
 
   def new

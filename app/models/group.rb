@@ -1,6 +1,7 @@
 class Group < ActiveRecord::Base
   has_many :memberships
   has_many :users, through: :memberships
+  has_many :games
   validates :name, presence: true
   validates :name, uniqueness: true
   validates :location, presence: true
