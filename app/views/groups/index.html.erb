@@ -40,7 +40,7 @@
     <h1 class="text-center">List of All Groups</h1>
       <ul class="fa-ul", style="padding-bottom:30px">
         <% @groups.each do |group| %>
-          <li><i class="fa-li fa fa-spinner fa-spin"></i><strong> <%= group.name %></strong> ( <%= group.location %> )
+          <li><i class="fa fa-thumb-tack"></i><strong> <%= group.name %></strong> ( <%= group.location %> )
           <% if group.member?(current_user) %>
             <%= link_to "VIEW YOUR GROUP", group_path(group.id), class:"btn btn-xs btn-warning" %> </li>
           <% else %>
@@ -55,7 +55,7 @@
   <h1 class="text-center">List of Results</h1>
     <ul class="fa-ul", style="padding-bottom:30px">
        <% @groups_searched.each do |group| %>
-        <li><i class="fa-li fa fa-spinner fa-spin"></i><strong> <%= group.name %></strong> ( <%= group.location %> )
+        <li><i class="fa fa-thumb-tack"></i><strong> <%= group.name %></strong> ( <%= group.location %> )
         <% if group.member?(current_user) %>
           <%= link_to "VIEW YOUR GROUP", group_path(group.id), class:"btn btn-xs btn-warning" %> </li>
         <% else %>
