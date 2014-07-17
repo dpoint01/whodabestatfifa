@@ -134,8 +134,8 @@ class User < ActiveRecord::Base
 
     if wins(games) == 0 && losses(games) == 0
      return ratio
-    elsif wins(games) == 1 && losses(games) == 0
-      return 1.0
+    elsif losses(games) == 0
+      return wins(games)
     else
      calc =  (wins(games).to_f / losses(games).to_f).round(2)
      return calc
