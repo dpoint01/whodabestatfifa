@@ -2,50 +2,49 @@
   <div class="text-center">
     <p><em>If you don't want to use the texting service, you can manually add a game here: </em></p>
      <div class="btn-group text-center" data-toggle="buttons-checkbox">
-        <a class="btn collapse-data-btn" data-toggle="collapse" href="#details">ADD GAME</a>
+        <a class="btn collapse-data-btn add" data-toggle="collapse" href="#details"
+        style="font-size:1.2em">ADD GAME</a>
      </div>
   </div>
 
-<div class="container", style="padding-top:30px">
+<div class="container", style="padding-top:30px;">
   <div class="text-center">
   <div class="form-inline">
     <%= form_for [@group, @game] do |f| %>
         <div id="details", class="container collapse">
           <div class="row">
-
-           <div class="col-md-3 col-md-offset-2", style="padding-left:160px">YOU</div>
-            <div class="text-center">
-             <div class='col-md-1 text-center'>vs.</div>
-              <div class="col-md-3">
-               <%= f.label "opponent", class:"sr-only" %>
-                <%= f.collection_select(:opponent_id, @opponents, :id, :username) %>
-               <br><br>
+            <div style="padding-left: 50px">
+             <div class="col-md-3 col-md-offset-2">YOU</div>
+              <div class="text-center">
+               <div class='col-md-1 text-center'>vs.</div>
+                <div class="col-md-3">
+                 <%= f.label "opponent", class:"sr-only" %>
+                  <%= f.collection_select(:opponent_id, @opponents, :id, :username) %>
+                 <br><br>
+                </div>
+               </div>
               </div>
-             </div>
+            </div>
+           <div style="padding-right: 30px"
+            <div class="row form-group">
+                <%= f.label "score current" , class:"sr-only" %>
+                <%= f.text_field :creator_score,placeholder: "Your Score" %>&nbsp&nbsp&nbsp&nbsp- &nbsp&nbsp<br><br>
             </div>
 
-          <div class="row form-group">
-              <%= f.label "score current" , class:"sr-only" %>
-              <%= f.text_field :creator_score,placeholder: "Your Score" %> - &nbsp&nbsp&nbsp<br><br>
-          </div>
-
-          <div class="row form-group">
-              <span class="sr-only"><%= f.label "score opponent" %></span>
-               &nbsp&nbsp&nbsp<%= f.text_field :opponent_score,placeholder: "Opponent's score" %><br><br>
+            <div class="row form-group">
+                <span class="sr-only"><%= f.label "score opponent" %></span>
+                 &nbsp&nbsp&nbsp<%= f.text_field :opponent_score,placeholder: "Opponent's score" %><br><br>
+            </div>
           </div>
 
          <div class="row text-center">
-              <%= f.submit 'Save Game', class:'btn btn-success' %>
+              <%= f.submit 'Save Game', class:'btn btn-success text-center'%>
          </div>
         </div>
     <% end %>
     </div>
   </div>
 
-  <br>
-
-
-  <div class="jumbotron">
     <h2 class="text-center"><em><%= @group.name %></em></h2>
     <h3 class="text-center"> Located @ <em><%= @group.location %></em> </h3>
     <h3 class="text-center" style="text-decoration:underline"> M E M B E R S </h3>
@@ -54,14 +53,14 @@
       <p class="text-center"> <%= user.username %> (<%= user.first_name %> <%= user.last_name %> ) </p>
     <% end %>
 
-  </div>
+
 
 </div>
 
-<div class="container" style="padding-top: 10px">
-  <div class="jumbotron">
+<div class="container" style="padding-top: 10px;">
+  <div class="jumbotron" style="background:#EFEDE4">
     <h3 class="text-center" , style="color:#3A92C2" >Da Best at FIFA is </h3>
-    <strong><h2 class="text-center tlt", style="color:#FBB829"><%= @users.first.username %></h2></strong>
+    <strong><h2 class="text-center tlt", style="color:#001185"><%= @users.first.username %></h2></strong>
   </div>
 </div>
 
@@ -114,10 +113,10 @@
           <% else %>
            <td><%= user.goals_scored(@games)%> </td>
           <% end %>
-          <% if user.games_played == []%>
+          <% if user.games_played(@games) == 0 %>
            <td> 0 </td>
           <% else %>
-           <td><%= user.games_played %> </td>
+           <td><%= user.games_played(@games) %> </td>
           <% end %>
           <% if user.goals_per_game(@games) == 0 %>
            <td> 0 </td>
@@ -146,8 +145,8 @@
 
 
 <div class="container" style="padding-top: 10px" id="history">
-  <div class="jumbotron">
-    <h3> Group History </h3>
+  <div class="jumbotron" style="background:#EFEDE4">
+    <h3 class="text-center"> Group History </h3>
     <% @games.each do |game| %>
       <p> <%= game.creator.username %> <span style="text-decoration:underline"> <%= game.creator_score%> - <%= game.opponent_score %> </span>  <%= game.opponent.username %> <span style="font-family:sans-serif;font-size:0.7em">( <%= game.created_at.in_time_zone("EST") %>)</span> </p>
     <% end %>
@@ -157,12 +156,4 @@
 <div class="text-center">
     <i class="fa fa-hand-o-left fa-lg fa-fw"></i> <%= link_to "Back", root_path, style:"font-size:1.5em"%>
 </div>
-
-
-<script>
-  $( document ).ready(function() {
-    $(".animate").textillate();
-  })
-</script>
-
 

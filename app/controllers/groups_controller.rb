@@ -18,10 +18,11 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @users = @group.users.order(:position)
-    @opponents = @users.reject{|i| i.id == current_user.id}
     @game = Game.new
-    @games = Game.all.order("created_at DESC")
+    @games = Game.where("group_id = ?", params[:id])
+    @users = sort(@group.users, @games)
+    @opponents = @users.reject{|i| i.id == current_user.id}
+
   end
 
   def new
@@ -44,6 +45,25 @@ class GroupsController < ApplicationController
 
   def group_params
     params.require(:group).permit(:name, :description, :location)
+  end
+
+  def sort(users, games)
+    unsorted_array= []
+
+    users.each do |user|
+      unsorted_array << {user: user, ratio: user.ratio(games)}
+    end
+
+   sorted_array = unsorted_array.sort_by{|user_hash| -user_hash[:ratio] }
+
+   return_array = []
+
+   sorted_array.each do |user_hash|
+    return_array << user_hash[:user]
+   end
+
+   return_array
+
   end
 
 end
