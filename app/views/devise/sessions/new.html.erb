@@ -1,11 +1,18 @@
-<div class="container", style="padding-top: 30px" >
+<video autoplay loop muted poster="https://s3.amazonaws.com/whoisthebest/Soccer-SD.mp4" id="bgvid">
+<source src="https://s3.amazonaws.com/whoisthebest/Soccer-SD.mp4" type="video/mp4">
+</video>
+
+
+
+
+<div class="container", style="padding-top: 30px;color:#3A92C2" >
     <p class="lead text-center">
-      <strong style="font-family:Chewy;color:#3A92C2"> Who Da Best at FIFA?</strong> is the website that all FIFA lovers
+      <strong style="font-family:Chewy"> Who Da Best at FIFA?</strong> is the website that all FIFA lovers
       have been waiting for. No more arguments, no more bragging, no more speculating on who's the best player amongst your friends... Simply join or create a group with your friends and we'll take care of finding who the best player is! Just play your favorite game, and add your score on the website! This is a beta version, new version will include texting (user will be able to send score by text to the website.) <em> PS: FIFA banter is still highly encouraged... </em>
     </p>
 
 
-
+<div style="color:#00CA6A">
   <h2>Sign in</h2>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -33,4 +40,5 @@
   <% end %>
 
   <%= render "devise/shared/links" %>
+</div>
 </div>
