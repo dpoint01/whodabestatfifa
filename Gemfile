@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby "2.0.0"
 
 gem 'rails', '4.0.4'
 gem 'pg'
@@ -9,6 +10,9 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'devise'
+gem 'rails_12factor', group: :production
+
+
 
 #for icons
 gem 'font-awesome-sass'
