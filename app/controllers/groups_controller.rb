@@ -19,7 +19,7 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @game = Game.new
-    @games = Game.where("group_id = ?", params[:id])
+    @games = Game.where("group_id = ?", params[:id]).order(created_at: :desc)
     @users = sort(@group.users, @games)
     @opponents = @users.reject{|i| i.id == current_user.id}
 

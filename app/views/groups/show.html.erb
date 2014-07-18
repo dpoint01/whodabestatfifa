@@ -2,7 +2,7 @@
   <div class="text-center">
     <p><em>If you don't want to use the texting service, you can manually add a game here: </em></p>
      <div class="btn-group text-center" data-toggle="buttons-checkbox">
-        <a class="btn collapse-data-btn add" data-toggle="collapse" href="#details"
+        <a class="btn collapse-data-btn add btn btn-lg btn-primary" data-toggle="collapse" href="#details"
         style="font-size:1.2em">ADD GAME</a>
      </div>
   </div>
@@ -146,9 +146,11 @@
 <div class="container" style="padding-top: 10px" id="history">
   <div class="jumbotron" style="background:#EFEDE4">
     <h3 class="text-center"> Group History </h3>
+    <p style="font-family: sans-serif"><em> Most Recent </em></p>
     <% @games.each do |game| %>
       <p> <%= game.creator.username %> <span style="text-decoration:underline"> <%= game.creator_score%> - <%= game.opponent_score %> </span>  <%= game.opponent.username %> <span style="font-family:sans-serif;font-size:0.7em">( <%= game.created_at.in_time_zone("EST") %>)</span> </p>
     <% end %>
+    <p style="font-family: sans-serif"><em>First Games ... </em></p>
   </div>
 </div>
 
