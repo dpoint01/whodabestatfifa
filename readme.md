@@ -37,7 +37,7 @@ For those who know all about it, Fifa creates alot of agruments around one centr
 ---
 
 **Note: The following demos showcase the basic features of the website and how it's used.
-        They were recored as a gifs so it might be a bit laggy... [Visit the website!](http://whoisthebestatfifa.herokuapp.com)**
+        They were recorded as gifs so it might be a bit laggy... [Visit the website!](http://whoisthebestatfifa.herokuapp.com)**
         
 ### Signing in and Homepage
 
