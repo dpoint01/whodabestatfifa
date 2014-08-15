@@ -11,20 +11,23 @@
       have been waiting for. No more arguments, no more bragging, no more speculating on who's the best player amongst your friends... Simply join or create a group with your friends and we'll take care of finding who the best player is! Just play your favorite game, and add your score on the website! This is a beta version, new version will include texting (user will be able to send score by text to the website.) <em> PS: FIFA banter is still highly encouraged... </em>
     </p>
 
-
-<div style="color:#00CA6A">
+<div style="color:white">
   <h2>Sign in</h2>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
     <div>
       <%= f.label :phone_number %><em>(10-digit only, no formatting, no '+1'. Only the good stuff.) </em><br />
-      <%= f.text_field :phone_number, autofocus: true %>
+      <div style="color:black">
+        <%= f.text_field :phone_number, autofocus: true %>
+      </div>
     </div>
 
     <div>
       <%= f.label :password %><br />
-      <%= f.password_field :password, autocomplete: "off" %>
+      <div style="color:black">
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div>
     </div>
 
     <% if devise_mapping.rememberable? -%>
@@ -33,7 +36,7 @@
       </div>
     <% end -%>
 
-    <div id="sign_in">
+    <div id="sign_in", style="color:#00CA6A">
       <%= f.submit "Sign in" %>
     </div>
 
@@ -42,3 +45,4 @@
   <%= render "devise/shared/links" %>
 </div>
 </div>
+
