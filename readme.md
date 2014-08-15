@@ -1,4 +1,5 @@
-== README
+visit the website: http://whoisthebestatfifa.herokuapp.com
+-----------
 
 **Note: The following demos showcase the basic features of the website and how it's used.
         This was recored as a gif so it might be a bit laggy. Visit the website!**
